@@ -9,6 +9,7 @@ $(document).ready(function(){
     }else i=15;
     }
     setInterval(change60,200);
+
  $(".button1").on("click",function(){
      document.getElementById("changeimg").setAttribute("src","logo-12.jpg");
  });
