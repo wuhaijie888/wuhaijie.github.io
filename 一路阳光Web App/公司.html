@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" 
+      content="width=device-width, initial-scale=1">	
+<title>Footer Example 2</title> 
+<link rel="stylesheet" 
+      href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<script type="text/javascript" 
+        src="http://code.jquery.com/jquery-2.1.3.min.js">
+</script>
+<script type="text/javascript" 
+        src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js">
+</script>
+</head>
+
+<body>
+
+<div data-role="page">
+
+  <div data-role="header"><h1>My Header</h1></div>
+
+  <div role="main" class="ui-content">
+  <p>
+  </p>
+  </div>
+
+	<div data-role="footer">
+		<a href="credits.html" data-role="button">Credits</a>
+		<a href="contact.html" data-role="button">Contact</a>
+	</div>
+	<div style="display:inline-block">1</div><div data-role="collapsible" id="collapsible" style="width:10vw;display:inline-block">
+        	<h3 class="h3">&nbsp</h3>
+			<div style="width:50vw">
+  	        <div class="ui-field-contain" data-controltype="textinput">
+            <label for="insurance_name">
+                险种
+            </label>
+            <input name="insurance_name" value="" type="text">
+        	</div>
+        	
+        <div class="ui-field-contain" data-controltype="textinput">
+            <label for="insurance_company">
+                投保公司
+            </label>
+            <input name="insurance_company" value="" type="text">
+        </div>
+        <div class="ui-field-contain" data-controltype="dateinput">
+            <label for="insurance_date">
+                投保日期
+            </label>
+            <input name="insurance_date" value="" type="date">
+        </div>
+        <div class="ui-field-contain" data-controltype="textinput">
+            <label for="insurance_year">
+                年期
+            </label>
+            <input name="year_period" value="" type="text">
+        </div>
+        <div class="ui-field-contain" data-controltype="textinput">
+            <label for="insurance_cost">
+                年保费
+            </label>
+            <input name="year_cost" value="" type="text">
+        </div>
+        <div class="ui-field-contain" data-controltype="textarea">
+            <label for="insurance_comment">
+                备注
+            </label>
+            <textarea name="insurance_comment"  placeholder=""></textarea>
+        </div>
+        </div>
+      		</div>
+      		
+      		
+    	</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html><html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <style type="text/css">
+        *{
+            padding: 0;
+            margin: 0;
+        }
+       ul>li{
+            list-style: none;
+        }
+        img.lazy{
+            width: 100%;
+            height: 160px;                /* 以下样式是为了做渐变效果 */
+
+            opacity:0;
+            transition:opacity 3s;
+        }
+        img[src]{
+            opacity: 1;
+        }
+        img[src=""],img:not([src]){opacity:0;
+        }
+    </style>
+
+</head>
+<body>
+<div id="root"></div>
+<ul>
+    <li><img class="lazy"   data-original="img/home/home1.jpg"/></li>
+    <li><img class="lazy"   data-original="img/home/home2.jpg"/></li>
+    <li><img class="lazy"   data-original="img/home/home3.png"/></li>
+    <li><img class="lazy"   data-original="img/home/home4.jpg"/></li>
+    <li><img class="lazy"   data-original="img/home/home1.jpg"/></li>
+    <li><img class="lazy"   data-original="img/home/home2.jpg"/></li>
+    <li><img class="lazy"   data-original="img/home/home3.png"/></li>
+    <li><img class="lazy"   data-original="img/home/home4.jpg"/></li>
+    <li><img class="lazy"   data-original="img/home/home1.jpg"/></li>
+    <li><img class="lazy"   data-original="img/home/home2.jpg"/></li>
+    <li><img class="lazy"   data-original="img/home/home3.png"/></li>
+    <li><img class="lazy"   data-original="img/home/home4.jpg"/></li>
+    <li><img class="lazy"   data-original="img/home/home1.jpg"/></li>
+    <li><img class="lazy"   data-original="img/home/home2.jpg"/></li>
+    <li><img class="lazy"   data-original="img/home/home3.png"/></li>
+    <li><img class="lazy"   data-original="img/home/home4.jpg"/></li>
+
+</ul>
+
+<script type="text/javascript">
+    /*
+     * 图片懒加载的思路
+     * 1、提前给所有图片设置宽和高用来占位
+     * 2、不设置图片的src属性，而是自定义一个data-original属性来存储图片的路径
+     * 3、判断当前屏幕的位置（图片的top值和屏幕底部的值），来进行是否显示
+     * 图片，如果需要显示的话，把data-original的值给src
+     */
+
+    //获取所有图片
+    var imgs = document.querySelectorAll("img.lazy");            //设置滚动事件
+    window.onscroll = lazyloadFn;            //屏幕的高度
+    var sh = window.innerHeight;
+    console.log(sh);            //刚进来需要先调用下
+    lazyloadFn();            //图片懒加载的方法
+    function lazyloadFn () {                //获取滚动的距离
+        var st = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+        var sn = sh + st;                //循环所有的图片
+        for (var i = 0; i < imgs.length; i++) {
+            if (imgs[i].offsetTop <= sn) {
+            imgs[i].setAttribute("src",imgs[i].getAttribute("data-original"));
+        }
+        }
+    }        </script>
+<script src="jquery.lazyload.min.js"></script>
+</body>
+</html>

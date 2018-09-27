@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>一路阳光新能源科技有限公司欢迎您！</title>
+<link rel="stylesheet" 
+      href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+
+  <link rel="icon" href="logo.png" type="image/x-icon"/>
+</head>
+<style type="text/css">
+  *{
+    padding: 0;
+    margin: 0;
+  }
+  ul>li{
+    list-style: none;
+  }
+  img.lazy{
+    width: 100%;
+    height: 160px;                /* 以下样式是为了做渐变效果 */
+    opacity:0;
+    transition:opacity 3s;
+  }
+  img[src]{
+    opacity: 1;
+  }
+  img[src=""],img:not([src]){
+    opacity:0;
+  }
+  .height-web{
+    height: 44.38px;
+    display: inline-block;
+    position: fixed;
+    z-index:10;
+    top: 44.38px;
+  }
+  .height-web1{
+    height: 44.38px;
+    display: inline-block;
+    position: fixed;
+    z-index:10;
+    top: 36.38px;
+    left: 151.53px;
+  }
+  .show-photo{
+    position:relative;
+    width: 100vw;
+    height:70vmin;
+  }
+  .photo2{
+     height:50vh;
+   }
+  .photo3{
+    height:60vh;
+  }
+  a{
+    text-decoration:none;
+  }
+</style>
+<body>
+
+<div data-role="page">
+
+
+  <div data-role="header" data-position="fixed" >
+    <h1>一路阳光新能源科技</h1>
+  </div>
+
+  <!--<div ><img class="show-photo" src="show1.jpg"/></div>
+  <div ><img class="show-photo photo2" src="com-photo2.jpg"/></div>
+  <div ><img class="show-photo" src="show-3.png"/></div>-->
+  <div ><ul>
+    <li><img class="lazy"   data-original="img/home/home1.jpg"/></li>
+    <li><img class="lazy"   data-original="img/home/home2.jpg"/></li>
+    <li><img class="lazy"   data-original="img/home/home3.png"/></li>
+    <li><img class="lazy"   data-original="img/home/home4.jpg"/></li>
+    <li><img class="lazy"   data-original="img/home/home1.jpg"/></li>
+    <li><img class="lazy"   data-original="img/home/home2.jpg"/></li>
+    <li><img class="lazy"   data-original="img/home/home3.png"/></li>
+    <li><img class="lazy"   data-original="img/home/home4.jpg"/></li>
+    <li><img class="lazy"   data-original="img/home/home1.jpg"/></li>
+    <li><img class="lazy"   data-original="img/home/home2.jpg"/></li>
+    <li><img class="lazy"   data-original="img/home/home3.png"/></li>
+    <li><img class="lazy"   data-original="img/home/home4.jpg"/></li>
+    <li><img class="lazy"   data-original="img/home/home1.jpg"/></li>
+    <li><img class="lazy"   data-original="img/home/home2.jpg"/></li>
+    <li><img class="lazy"   data-original="img/home/home3.png"/></li>
+    <li><img class="lazy"   data-original="img/home/home4.jpg"/></li>
+
+  </ul>
+    </div>
+  <div class="height-web" onclick="shownav()"><img class="height-web" src="com-logo.png" alt="company photo"/></div>
+
+  <div data-role="collapsible"  id="collapsible" class="height-web1 ui-overlay-a" data-collapsed-icon="grid" data-expanded-icon="grid" >
+
+      <h3 class="h3" onclick="shownav()">&nbsp;</h3>
+      <tr>
+          <th>走进一路阳光</th>
+          <th>研究开发&nbsp;&nbsp;</th>
+          <th>产品应用&nbsp;&nbsp;</th>
+          <th>客户服务&nbsp;&nbsp;</th>
+          <th>资讯中心&nbsp;&nbsp;</th>
+      </tr>
+
+
+      <div data-role="main" class="ui-content ui-overlay-a" >
+            <table data-role="table" class="ui-responsive ui-overlay-a" >
+              <thead>
+
+
+        </thead>
+        <tbody>
+        <tr>
+          <td><a href="公司2.html">企业信息</a></td>
+          <td><a href="公司2.html">研发理念</a></td>
+          <td><a href="公司2.html">千灯下乡计划</a></td>
+          <td><a href="公司2.html">服务网络</a></td>
+          <td><a href="公司2.html">公司新闻</a></td>
+        </tr>
+        <tr>
+          <td><a href="公司2.html">企业地位</a></td>
+          <td><a href="公司2.html">研发实践</a></td>
+          <td><a href="公司2.html">能源应用</a></td>
+
+        </tr>
+        <tr>
+          <td><a href="公司2.html">企业理念</a></td>
+          <td><a href="公司2.html">研发资源</a></td>
+        </tr>
+
+        </tbody>
+      </table>
+    </div>
+</div>
+
+  <div data-role="footer" data-position="fixed"
+       data-id="footernav" data-theme="a">
+    <div data-role="navbar">
+      <ul>
+        <li>
+          <a href="index.html"
+             class="ui-btn-active">首页</a>
+        </li>
+        <li>
+          <a href="公司2.html">公司一览</a>
+        </li>
+        <li>
+          <a href="公司3.html">申请体验路灯</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+	
+</div>
+
+</body>
+<script type="text/javascript">
+    /*
+     * 图片懒加载的思路
+     * 1、提前给所有图片设置宽和高用来占位
+     * 2、不设置图片的src属性，而是自定义一个data-original属性来存储图片的路径
+     * 3、判断当前屏幕的位置（图片的top值和屏幕底部的值），来进行是否显示
+     * 图片，如果需要显示的话，把data-original的值给src
+     */
+
+    //获取所有图片
+    var imgs = document.querySelectorAll("img.lazy");            //设置滚动事件
+    window.onscroll = lazyloadFn;            //屏幕的高度
+    var sh = window.innerHeight;
+    console.log(sh);            //刚进来需要先调用下
+    lazyloadFn();            //图片懒加载的方法
+    function lazyloadFn () {                //获取滚动的距离
+        var st = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+        var sn = sh + st;                //循环所有的图片
+        for (var i = 0; i < imgs.length; i++) {
+            if (imgs[i].offsetTop <= sn) {
+                imgs[i].setAttribute("src",imgs[i].getAttribute("data-original"));
+            }
+        }
+    }
+    var flag=true;
+    function shownav(){
+        if(flag){
+        $('img.height-web').hide();
+        $("#collapsible").css("left","0");
+        flag=!flag;
+        console.log(flag);
+        }
+        else {
+        $("#collapsible").css("left","151.53"+'px');
+        $('img.height-web').show();
+        flag=!flag;
+            console.log(flag);
+        }
+
+    }
+
+
+</script>
+<script type="text/javascript" src="js/jquery-2.1.3.min.js">
+</script>
+<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js">
+</script>
+</html>
