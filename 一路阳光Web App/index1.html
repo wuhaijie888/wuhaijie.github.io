@@ -112,8 +112,39 @@
     padding-top:3px;
 
   }
+  @media only screen and (min-height: 500px) {
+    .media-img {
+      width:50vw;
+      left: 25vw;
+      position: absolute;
+    }
+  }
+  @media only screen and (min-height:900px) {
+    .media-img {
+      width: 100vw;
+      height: auto;
+    }
+  }
+  .main-a{
+    position: absolute;
+    top: 80vh;
+    width: 60vw;
+    left: 20vw;
+
+  }
 </style>
 <body>
+<div data-role="page" id="main">
+
+  <div data-role="header">
+
+  </div>
+
+<img src="img/home/welcome.jpg" class="media-img">
+  <a href="#company1" class="ui-btn ui-btn-b ui-corner-all main-a">进入了解一下</a>
+
+</div>
+
 
 <div data-role="page" id="company1">
 
@@ -376,7 +407,11 @@
      * 3、判断当前屏幕的位置（图片的top值和屏幕底部的值），来进行是否显示
      * 图片，如果需要显示的话，把data-original的值给src
      */
-
+window.onload=function () {
+    setTimeout(function () {
+        $(".main-a").click();
+    },1000);
+}
 
     //获取所有图片
     var imgs = document.querySelectorAll("img.lazy");            //设置滚动事件
@@ -411,8 +446,9 @@
     }
 
         if(window.navigator.userAgent.indexOf('AppleWebKit') !== -1) {
-
-           alert("您现在选择的是极速模式，建议开启兼容模式。")
+            setTimeout(function () {
+              alert("您现在选择的是极速模式，建议开启兼容模式。")
+            },1500);
 
         }
         var arr=[];
