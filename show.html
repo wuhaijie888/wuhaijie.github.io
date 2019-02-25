@@ -75,22 +75,57 @@
 	<p><img data-original="images/201610181557196870.jpg" src="images/blog.jpg" alt="" /></p>
 	<p>高阶组件开发</p>
 	<pre class="prettyprint lang-cs">
-	public static double JieCheng(int number)
-	{
-		if (number == 0)
-		{
-			return 0;
-		}
+	react是个模块化设计的js框架，结合es6的export和import，可以快速加进不同的子模块，这对于程序内部解耦合有着非常好的意义。
+下面是简单化的双向数据绑定，虽然比vue之类的双向数据绑定繁杂，不过react最著名的就是单向数据流，即父组件流向组件，这让
+react在面对一些大工程会显得更得心应手。
+import React, { Component } from 'react';
+import Person from './Person';
 
-		//初始值必须设置为1
-		double result = 1; 
+class App extends Component {
+  state = {
+    persons:
+      [
+        { name: "Mrs CoCo", count: 21 },
+        { name: "Mrs Maomao", count: 31 }
+      ],
+    otherState: "anything"
+  }
 
-		for (int i = number; i &gt;= 1; i--)
-		{
-			result = result*i;
-		}
-		return result;
-	}</pre>
+  changeName = (event) =>{
+    this.setState(
+      {
+        persons:
+          [
+            { name: event.target.value, count: 23 },
+            { name: "Mrs Maomao", count: 31 }
+          ]
+      }
+    );
+  }
+  myClick = (event) =>{
+      console.log("10086");
+    this.setState(
+      {
+        persons:
+          [
+            { name: "Mrs CoCo", count: 99 },
+            { name: "Mrs Maomao", count: 31 }
+          ]
+      }
+    );
+  }
+
+ render() {
+    return (
+      <div className="App">
+        <Person changed={this.changeName} myClick={this.myClick} name={this.state.persons[0].name} count={this.state.persons[0].count} >我很高兴！！！</Person>
+      </div>
+    );
+  }
+}
+
+export default App;
+	</pre>
 	<div class="bdsharebuttonbox">
 		<a href="#" class="bds_more" data-cmd="more"></a>
 		<a href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://www.baidu.com'" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
@@ -112,9 +147,6 @@
 			  "share": {} };
 		  with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=0.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
   </article>
-  <div class="article-tags">标签：<a href="#" rel="tag" >DTcms博客</a><a href="#" rel="tag" >个人博客</a><a href="#" rel="tag" >独立博客</a><a href="#" rel="tag" >修复优化</a>
-	</div>
-
   <div class="title" id="comment">
 	<h3>评论</h3>
   </div>
@@ -148,7 +180,7 @@
 	<div class="tab-content">
 	  <div role="tabpanel" class="tab-pane contact active" id="notice">
 		<h2>日志总数:
-			  4篇
+			  6篇
 		  </h2>
 		  <h2>网站运行:
 		  <span id="opentime"></span></h2>

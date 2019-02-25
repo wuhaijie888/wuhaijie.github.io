@@ -1,0 +1,295 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="stylesheet" type="text/css" href="animate.css">
+<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7/dist/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="font-awesome.css">
+<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js" type="text/javascript"></script> 
+<script src="http://keleyi.com/keleyi/phtml/jqtexiao/37/jquery.hovertreescroll.js"></script>  
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+<style>
+
+body{
+  background:grey;
+}
+h5{
+  text-align:center;
+  margin-top:1.5em;
+  color:#fff;
+  font-family: 'Rammetto One', cursive;
+}
+.restart{
+  color:grey;
+}
+#base{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:30em;
+  height:30em;
+  border-radius:2000px;
+  border:10px solid #000;
+  margin:-175px 0 0 -175px;
+  overflow:hidden;
+  background:#000;
+  display:inline;
+}
+
+.red{
+  background-color:red;
+  float:right;
+  margin-top:-50%;
+  border-bottom: .5em solid #000;
+  border-left: .5em solid #000;
+  width:50%;
+  height:50%;
+}
+.red:active{
+  opacity:0.5;
+}
+.blue{
+  float:right; 
+  background-color:blue;
+  border-top: .5em solid #000;
+  border-left: .5em solid #000;
+  width:50%;
+  height:50%;
+}
+.blue:active{
+  opacity:0.5;
+}
+.yellow{
+  background-color:yellow;
+  border-top: .5em solid #000;
+  border-right: .5em solid #000;
+  width:50%;
+  height:50%;
+}
+.yellow:active{
+  opacity:0.5;
+}
+.green{
+  background-color:green;
+  border-bottom: .5em solid #000;
+  border-right: .5em solid #000;
+  width:50%;
+  height:50%;
+}
+.green:active{
+  opacity:0.5;
+}
+
+#strict {
+  width:25%;
+  margin:0 auto;
+  cursor:pointer;
+  
+}
+.strictOff{
+  width:1em;
+  height:1em;
+  margin-left:.5em;
+  border:2px solid grey;
+  border-radius:50%;
+  background-color:yellow;
+}
+.strictON{
+  width:1em;
+  height:1em;
+  margin-left:.5em;
+  border:2px solid grey;
+  border-radius:50%;
+  background-color:blue;
+}
+#strict p {
+  font-size:.8em;
+  color:#fff;
+  text-align:center;
+  
+}
+#counter{
+  margin-left:2em;
+  width:3em;
+  height:2em;
+  background-color:rgba(35,10,10,1);
+}
+#counter p{
+  text-align:center;
+  font-size:1.5em;
+  color:red;
+  font-family: 'VT323', monospace;
+}
+#start {
+  width:25%;
+ margin:0 auto;
+  cursor:pointer;
+  
+}
+#start div{
+  width:1em;
+  height:1em;
+  margin-left:.5em;
+  border:2px solid grey;
+  border-radius:50%;
+  background-color:green;
+}
+#start p {
+  font-size:.8em;
+  color:#fff;
+  text-align:center;
+  
+}
+#base .controls{ 
+  height:50%;
+  width:50%;
+  border-radius:50%;
+  position:absolute;
+  top:50%;
+  left:50%;
+  margin:-25% 0 0 -25%;
+  background:#000;
+}
+.dim {
+  opacity:0.5;ujiyhjhh
+}
+</style>
+
+<body class="glyphicon-object-align-left">
+  <div id="base">
+  <div id="gre" class="green b"></div>
+  <div id="red" class="red b" ></div>
+  <div id="blu" class="blue b"></div>
+  <div id="yel" class="yellow b"></div>
+  
+  <div class="controls">
+   
+    <div id="controlBtns" class="row">
+     <br> <br><div id="counter" class="col-2"><p id="countNum"></p></div>
+      <div id="start" class="col-2" ">
+        <div id="startBtn"></div>
+        <p>start</p>
+        </div>
+       
+      <div id="strict" class="col-4" ">
+        <div id="strictBtn" class="strictOff"></div>
+        <p>strict</p>
+        </div>
+   
+  </div>
+  
+</div>
+
+</div>
+<script> 
+$(document).ready(function(){  
+var simon = {
+  count: 0,
+  moves: ['#gre','#blu', '#red', '#yel'],
+  currentGame: [],
+  player: [],
+  beep:{
+    blu: new Audio('https://s3.amazonaws.com/freecodecamp/simonSound1.mp3'), 
+    red: new Audio('https://s3.amazonaws.com/freecodecamp/simonSound2.mp3'), 
+    yel: new Audio('https://s3.amazonaws.com/freecodecamp/simonSound3.mp3'), 
+    gre: new Audio('https://s3.amazonaws.com/freecodecamp/simonSound4.mp3')
+  },
+  strict: false
+};
+var a;
+$("#stricBtn").on("click",function(){
+	newGame();
+	});
+$("#startBtn").on("click",function(){
+	a=simon.moves[randomNum()];
+	$(a).addClass("dim");
+	beep(a);
+	setTimeout(function(){
+		$(a).removeClass("dim");
+		},1000);
+		simon.currentGame.push(a);
+		alert("请确认");
+		simon.count++;
+		 $('#countNum').html(simon.count);
+	});
+$("#gre,#blu,#yel,#red").on("click",function(){
+	 var move = "#"+this.id;
+  simon.player.push(move);
+   rightOrwrong(move);
+	});
+
+function newGame() {
+  simon.currentGame = [];
+  simon.count = 0;
+   empty();
+}
+
+function randomNum(){
+	return Math.floor(Math.random()*4);
+	}
+
+
+function beep(id) {
+  switch(id) {
+    case'#gre':simon.beep.gre.play();break;
+    case '#blu':simon.beep.blu.play();break;
+    case '#red':simon.beep.red.play();break;
+    case '#yel':simon.beep.yel.play();break;
+  };
+}
+  function rightOrwrong(move){
+	 if (simon.player[simon.player.length - 1] !== simon.currentGame[simon.player.length - 1]) {
+      alert('再来一次');
+    empty();
+    }
+    else {
+      beep(move);
+      var check = simon.player.length === simon.currentGame.length;
+      if (check) {
+        if(simon.count == 20){
+          alert('胜利');
+        } else {
+          alert('答对啦，下一关');
+		  $("#gre,#blu,#yel,#red").removeClass("dim");
+          addToCountNum();
+		  
+        }
+      }
+    }
+	  }
+function empty(){
+  simon.player = [];
+}
+
+function addToCountNum() {
+	 simon.count++;
+    $('#countNum').html(simon.count);
+	simon.currentGame = [];
+	empty();
+
+	setTimeout(newChallenge(simon.count),1000);
+    }
+	
+	function newChallenge(count){
+		var i=0;
+		 var pattern = setInterval(function(){
+			  a=simon.moves[randomNum()];
+	   $(a).addClass("dim");   
+	   beep(a);
+	   simon.currentGame.push(a);
+	setTimeout(function(){ 
+		$(a).removeClass("dim");
+		},800);
+		 i++;
+			 if (i >= count) {
+      clearInterval(pattern);
+	  }
+			 },1000);
+		 		}
+
+
+});
+</script>
+</body>
+</html>
